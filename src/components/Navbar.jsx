@@ -47,7 +47,7 @@ const Navbar = () => {
             className="text-2xl md:text-3xl font-normal text-[#1e3a5f] cursor-pointer"
             style={{ fontFamily: "'Great Vibes', cursive" }}
           >
-            Gina Michele
+            Gina Michelle
           </motion.a>
 
           {/* Desktop Menu */}

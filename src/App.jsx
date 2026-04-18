@@ -20,7 +20,7 @@ function App() {
             className="text-3xl font-normal text-white mb-3"
             style={{ fontFamily: "'Great Vibes', cursive" }}
           >
-            Gina Michele
+            Gina Michelle
           </p>
           <p
             className="text-white/80 text-sm font-light"
@@ -29,7 +29,7 @@ function App() {
                 "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
             }}
           >
-            &copy; 2024 Gina Michele Hair Salon. All rights reserved.
+            &copy; 2024 Gina Michelle Hair Salon. All rights reserved.
           </p>
         </div>
       </footer>
