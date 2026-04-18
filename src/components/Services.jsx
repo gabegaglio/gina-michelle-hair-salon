@@ -1,88 +1,292 @@
-import { motion } from "framer-motion";
-import { FaCut, FaPalette, FaUser } from "react-icons/fa";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const services = [
   {
+    index: "01",
     name: "Haircuts",
-    description: "Professional haircuts tailored to your style",
-    icon: FaCut,
+    tagline: "Tailored cuts for every style",
+    prices: [
+      { amount: 20, label: "Men / Boys" },
+      { amount: 35, label: "Women" },
+    ],
   },
   {
+    index: "02",
     name: "Highlights",
-    description: "Beautiful color highlights to enhance your look",
-    icon: FaPalette,
+    tagline: "Color that elevates",
+    prices: [{ amount: 100, label: "Half Head Highlight" }],
+    featured: true,
   },
   {
+    index: "03",
     name: "Shaves",
-    description: "Classic straight razor shaves for a smooth finish",
-    icon: FaUser,
+    tagline: "Classic. Clean. Refined.",
+    prices: [{ amount: 22, label: "Head Shave" }],
   },
 ];
+
+const fontSans = {
+  fontFamily:
+    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+};
+
+const fontSerif = { fontFamily: "'Playfair Display', serif" };
+
+const TiltCard = ({ service, index }) => {
+  const ref = useRef(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [6, -6]), {
+    stiffness: 150,
+    damping: 18,
+  });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-6, 6]), {
+    stiffness: 150,
+    damping: 18,
+  });
+
+  const handleMouseMove = (e) => {
+    const rect = ref.current.getBoundingClientRect();
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  const isFeatured = service.featured;
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: index * 0.12, duration: 0.7, ease: "easeOut" }}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+        transformPerspective: 1000,
+      }}
+      className={`group relative ${
+        isFeatured ? "md:-translate-y-6 md:scale-[1.03]" : ""
+      }`}
+    >
+      {/* Card */}
+      <div
+        className={`relative overflow-hidden rounded-[2rem] p-10 md:p-12 h-full flex flex-col transition-all duration-500 ${
+          isFeatured
+            ? "bg-[#1e3a5f] text-white shadow-2xl shadow-[#1e3a5f]/30"
+            : "bg-white border border-[#1e3a5f]/10 shadow-md hover:shadow-xl"
+        }`}
+      >
+        {/* Decorative corner accent */}
+        <div
+          className={`absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl opacity-40 pointer-events-none transition-opacity duration-500 group-hover:opacity-70 ${
+            isFeatured ? "bg-white/20" : "bg-[#1e3a5f]/10"
+          }`}
+        />
+
+        {/* Number + Title row */}
+        <div className="relative z-10 flex items-baseline gap-5 mb-3">
+          <span
+            className={`text-5xl md:text-6xl leading-none font-semibold tracking-tight transition-colors duration-500 ${
+              isFeatured
+                ? "text-white/30 group-hover:text-white/60"
+                : "text-[#1e3a5f]/25 group-hover:text-[#1e3a5f]/60"
+            }`}
+            style={{
+              ...fontSerif,
+              WebkitTextStroke: isFeatured
+                ? "1px rgba(255,255,255,0.4)"
+                : "1px rgba(30,58,95,0.35)",
+            }}
+          >
+            {service.index}
+          </span>
+          <h3
+            className={`text-4xl md:text-5xl font-normal tracking-tight leading-none ${
+              isFeatured ? "text-white" : "text-[#1e3a5f]"
+            }`}
+            style={fontSerif}
+          >
+            {service.name}
+          </h3>
+        </div>
+
+        {/* Tagline */}
+        <p
+          className={`relative z-10 italic text-sm md:text-base mb-8 font-light ${
+            isFeatured ? "text-white/70" : "text-[#1e3a5f]/60"
+          }`}
+          style={fontSerif}
+        >
+          {service.tagline}
+        </p>
+
+        {/* Animated divider */}
+        <div className="relative z-10 mb-8 h-px w-full overflow-hidden flex-grow-0">
+          <div
+            className={`absolute inset-0 ${
+              isFeatured ? "bg-white/15" : "bg-[#1e3a5f]/10"
+            }`}
+          />
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.12 + 0.4, duration: 0.8 }}
+            style={{ transformOrigin: "left" }}
+            className={`absolute inset-0 ${
+              isFeatured ? "bg-white" : "bg-[#1e3a5f]"
+            } w-1/3 group-hover:w-full transition-all duration-700`}
+          />
+        </div>
+
+        <div className="flex-grow" />
+
+        {/* Price footer */}
+        <div
+          className={`relative z-10 flex items-end justify-between pt-6 border-t ${
+            isFeatured ? "border-white/15" : "border-[#1e3a5f]/10"
+          }`}
+        >
+          <div>
+            <p
+              className={`text-[10px] uppercase tracking-[0.2em] font-light mb-2 ${
+                isFeatured ? "text-white/60" : "text-[#1e3a5f]/50"
+              }`}
+              style={fontSans}
+            >
+              Starting at
+            </p>
+            <div className="space-y-1.5">
+              {service.prices.map((p, i) => (
+                <div key={i} className="flex items-baseline gap-2">
+                  <span
+                    className={`text-2xl md:text-3xl font-normal leading-none ${
+                      isFeatured ? "text-white" : "text-[#1e3a5f]"
+                    }`}
+                    style={fontSerif}
+                  >
+                    ${p.amount}
+                  </span>
+                  <span
+                    className={`text-[11px] italic font-light ${
+                      isFeatured ? "text-white/60" : "text-[#1e3a5f]/55"
+                    }`}
+                    style={fontSerif}
+                  >
+                    ({p.label})
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <motion.a
+            href="#contact"
+            whileHover={{ x: 4 }}
+            whileTap={{ scale: 0.95 }}
+            className={`inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-light pb-1 border-b ${
+              isFeatured
+                ? "text-white border-white/40 hover:border-white"
+                : "text-[#1e3a5f] border-[#1e3a5f]/30 hover:border-[#1e3a5f]"
+            }`}
+            style={fontSans}
+          >
+            Book
+            <span aria-hidden>→</span>
+          </motion.a>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 const Services = () => {
   return (
     <section
       id="services"
-      className="py-24 bg-[#f8fafc] relative overflow-hidden"
+      className="relative py-28 md:py-36 bg-[#f8fafc] overflow-hidden"
     >
-      <div className="container mx-auto px-6 max-w-7xl">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-normal text-center mb-4 text-[#1e3a5f]"
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-[0.035]"
           style={{
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+            backgroundImage:
+              "linear-gradient(#1e3a5f 1px, transparent 1px), linear-gradient(90deg, #1e3a5f 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
           }}
-        >
-          Our Services
-        </motion.h2>
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          whileInView={{ opacity: 1, scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto w-24 h-0.5 bg-[#1e3a5f] mb-16"
-        ></motion.div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white border border-[#1e3a5f]/10 p-10 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 text-center"
-            >
-              <div className="flex justify-center mb-6">
-                <div className="p-4 bg-[#1e3a5f]/10 rounded-full">
-                  <service.icon className="text-5xl text-[#1e3a5f]" />
-                </div>
-              </div>
-              <h3
-                className="text-2xl font-normal mb-4 text-[#1e3a5f]"
-                style={{
-                  fontFamily:
-                    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-                }}
-              >
-                {service.name}
-              </h3>
-              <p
-                className="text-[#1e3a5f]/70 leading-relaxed font-light"
-                style={{
-                  fontFamily:
-                    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-                }}
-              >
-                {service.description}
-              </p>
-            </motion.div>
+        />
+        <div className="absolute -top-40 -left-20 w-96 h-96 bg-[#1e3a5f]/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -right-20 w-96 h-96 bg-[#1e3a5f]/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-xs uppercase tracking-[0.4em] text-[#1e3a5f]/60 font-light mb-4"
+            style={fontSans}
+          >
+            — What We Do —
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            className="text-5xl md:text-7xl font-normal text-[#1e3a5f] leading-tight"
+            style={fontSerif}
+          >
+            Our <em className="italic font-light">Services</em>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="mt-6 text-[#1e3a5f]/60 font-light max-w-xl mx-auto"
+            style={fontSans}
+          >
+            Three decades of craft, distilled into a focused menu of signature
+            services.
+          </motion.p>
+        </div>
+
+        {/* Cards Grid */}
+        <div className="grid md:grid-cols-3 gap-8 md:gap-6 lg:gap-8 items-stretch">
+          {services.map((service, i) => (
+            <TiltCard key={service.name} service={service} index={i} />
           ))}
         </div>
+
+        {/* Footer note */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="text-center mt-16"
+        >
+          <p
+            className="text-xs uppercase tracking-[0.3em] text-[#1e3a5f]/50 font-light"
+            style={fontSans}
+          >
+            See full menu below ↓
+          </p>
+        </motion.div>
       </div>
     </section>
   );

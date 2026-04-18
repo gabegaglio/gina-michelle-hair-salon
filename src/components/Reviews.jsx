@@ -37,6 +37,34 @@ const reviews = [
     rating: 5,
     text: "Had hair color, cut, and blowout at Gina Michele Hair Salon. First time trying this salon, and it was a wonderful experience! I am very happy and I will definitely be back! The owners are so nice and the service is terrific.",
   },
+  {
+    author: "Karyn Schuneman",
+    meta: "1 review",
+    date: "6 years ago",
+    rating: 5,
+    text: "Absolutely love this place. Both Gina and Michelle gave me a complete new look. From cutting my hair short to bringing out a color more suited for me along with some highlights. They also make you feel welcome and comfortable unlike other salons. I recommend them for all of your hair needs!",
+  },
+  {
+    author: "Balasaraswati Sriram",
+    meta: "Local Guide · 40 reviews · 2 photos",
+    date: "4 years ago",
+    rating: 5,
+    text: "Clean, personal touch, knowledgeable, friendly. My first visit to this salon and I walked out a happy person. Gina is excellent at her work. She accommodated me as a walk in customer. Can't thank her enough. They use good products and I got a lot of compliments on my hair. This will be my go to place.",
+  },
+  {
+    author: "Raymond Russo",
+    meta: "8 reviews · 1 photo",
+    date: "6 years ago",
+    rating: 5,
+    text: "Amazing modern hair salon, Gina is an absolutely the best, she excels in everything she does. I've been coming to her for years and not one disappointment. Very kind and generous atmosphere, you won't regret coming here for all ages! Amazing location and plenty of parking! Prices are just right.",
+  },
+  {
+    author: "Dennis Waszak",
+    meta: "11 reviews · 4 photos",
+    date: "6 years ago",
+    rating: 5,
+    text: "Gina and Michele are great at what they do — and even better people. They work hard and do terrific work, and have been doing so for years! This is a great new spot for them — and THE place to go for a great cut, styling, etc., for men, women and kids!",
+  },
 ];
 
 const Reviews = () => {
