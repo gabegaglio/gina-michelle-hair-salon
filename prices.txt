@@ -1,0 +1,18 @@
+Men - Boys Hair Cut 20 ... 25
+Wash, Cut-Style ... 22 ... 28
+Head Shave ... 22 ... 28
+Facial Shave ... 25 ... 30
+Facial Massage ... 30 ... 35
+Beard Trim ... 5 ... 8
+Hair Color (Only) ... 40 ... 50
+Men Services Require Less Time
+
+Women Haircut ... 35 ... 50
+Girls Dry Haircut (10 Under) ... 26 ... 35
+Wash Cut - Blowout ... 40 ... 55
+Wash Blowout ... 35 ... 40
+Curly Iron- Flat Iron ... 30 ... 45
+All Color Services ... 80 ... 120
+Full Head Highlight ... 180 ... 250
+Half Head Highlight ... 100 .. 150
+Perm + Body Waves ... 100 ... 200
