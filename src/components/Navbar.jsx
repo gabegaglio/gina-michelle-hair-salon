@@ -19,6 +19,8 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", href: "#home" },
     { name: "Services", href: "#services" },
+    { name: "Our Work", href: "#our-work" },
+    { name: "Team", href: "#team" },
     { name: "Hours", href: "#hours" },
     { name: "Reviews", href: "#reviews" },
     { name: "Contact", href: "#contact" },
@@ -47,7 +49,7 @@ const Navbar = () => {
             className="text-2xl md:text-3xl font-normal text-[#1e3a5f] cursor-pointer"
             style={{ fontFamily: "'Great Vibes', cursive" }}
           >
-            Gina Michelle
+            Gina Michele
           </motion.a>
 
           {/* Desktop Menu */}

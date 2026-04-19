@@ -1,6 +1,8 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
+import OurWork from "./components/OurWork";
+import MeetTheTeam from "./components/MeetTheTeam";
 import Hours from "./components/Hours";
 import Contact from "./components/Contact";
 import Reviews from "./components/Reviews";
@@ -11,6 +13,8 @@ function App() {
       <Navbar />
       <Hero />
       <Services />
+      <OurWork />
+      <MeetTheTeam />
       <Hours />
       <Reviews />
       <Contact />
@@ -20,7 +24,7 @@ function App() {
             className="text-3xl font-normal text-white mb-3"
             style={{ fontFamily: "'Great Vibes', cursive" }}
           >
-            Gina Michelle
+            Gina Michele
           </p>
           <p
             className="text-white/80 text-sm font-light"
@@ -29,7 +33,7 @@ function App() {
                 "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
             }}
           >
-            &copy; 2024 Gina Michelle Hair Salon. All rights reserved.
+            &copy; 2026 Gina Michele Hair Salon. All rights reserved.
           </p>
         </div>
       </footer>

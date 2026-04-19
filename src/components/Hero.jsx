@@ -38,7 +38,7 @@ const Hero = () => {
             className="text-7xl md:text-9xl font-normal mb-4 leading-tight text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.55)]"
             style={{ fontFamily: "'Great Vibes', cursive" }}
           >
-            Gina Michelle
+            Gina Michele
           </h1>
           <motion.p
             initial={{ opacity: 0 }}

@@ -7,7 +7,7 @@ const reviews = [
     meta: "3 reviews",
     date: "8 months ago",
     rating: 5,
-    text: "I full heartedly recommend Gina! After many disappointing haircuts from other stylists, Gina knew exactly what haircut to recommend for my face shape and hair. She is also a color expert! Crafting the correct match for my hair. She and Michelle have created a warm, inviting atmosphere in their shop. Bravo ladies! It's a pleasure.",
+    text: "I full heartedly recommend Gina! After many disappointing haircuts from other stylists, Gina knew exactly what haircut to recommend for my face shape and hair. She is also a color expert! Crafting the correct match for my hair. She and Michele have created a warm, inviting atmosphere in their shop. Bravo ladies! It's a pleasure.",
   },
   {
     author: "Michael Gamba",
@@ -42,7 +42,7 @@ const reviews = [
     meta: "1 review",
     date: "6 years ago",
     rating: 5,
-    text: "Absolutely love this place. Both Gina and Michelle gave me a complete new look. From cutting my hair short to bringing out a color more suited for me along with some highlights. They also make you feel welcome and comfortable unlike other salons. I recommend them for all of your hair needs!",
+    text: "Absolutely love this place. Both Gina and Michele gave me a complete new look. From cutting my hair short to bringing out a color more suited for me along with some highlights. They also make you feel welcome and comfortable unlike other salons. I recommend them for all of your hair needs!",
   },
   {
     author: "Balasaraswati Sriram",
