@@ -3,11 +3,11 @@ import Pricing from "./Pricing";
 
 const hours = [
   { day: "Monday", hours: "Closed" },
-  { day: "Tuesday", hours: "9 AM–6 PM" },
-  { day: "Wednesday", hours: "9 AM–6 PM" },
-  { day: "Thursday", hours: "9 AM–6 PM" },
-  { day: "Friday", hours: "9 AM–6 PM" },
-  { day: "Saturday", hours: "8:30 AM–5 PM" },
+  { day: "Tuesday", hours: "9 AM–5 PM" },
+  { day: "Wednesday", hours: "9 AM–5 PM" },
+  { day: "Thursday", hours: "9 AM–5 PM" },
+  { day: "Friday", hours: "9 AM–5 PM" },
+  { day: "Saturday", hours: "9 AM–4 PM" },
   { day: "Sunday", hours: "Closed" },
 ];
 

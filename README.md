@@ -20,11 +20,11 @@ A modern, responsive website for Gina Michele Hair Salon built with React, Vite,
 ### Business Hours
 
 - Monday: Closed
-- Tuesday: 9 AM–6 PM
-- Wednesday: 9 AM–6 PM
-- Thursday: 9 AM–6 PM
-- Friday: 9 AM–6 PM
-- Saturday: 8:30 AM–5 PM
+- Tuesday: 9 AM–5 PM
+- Wednesday: 9 AM–5 PM
+- Thursday: 9 AM–5 PM
+- Friday: 9 AM–5 PM
+- Saturday: 9 AM–4 PM
 - Sunday: Closed
 
 ## Getting Started

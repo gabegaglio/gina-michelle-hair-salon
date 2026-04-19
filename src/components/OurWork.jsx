@@ -14,7 +14,6 @@ const galleryImages = [
   { src: `${base}gallery/work-09.png`, alt: "Men's haircut with beard grooming" },
   { src: `${base}gallery/work-10.png`, alt: "Taper fade with textured curls" },
   { src: `${base}gallery/work-11.png`, alt: "Precision taper fade from behind" },
-  { src: `${base}gallery/work-12.png`, alt: "Men's haircut with salon branding in window" },
   { src: `${base}gallery/work-13.png`, alt: "Classic neat men's cut with tapered neckline" },
 ];
 
