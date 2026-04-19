@@ -29,7 +29,7 @@ const OurWork = () => {
   return (
     <section
       id="our-work"
-      className="relative py-28 md:py-36 bg-white overflow-hidden"
+      className="relative py-20 md:py-36 bg-white overflow-x-hidden"
     >
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
         <div
@@ -43,7 +43,7 @@ const OurWork = () => {
       </div>
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-10 md:mb-20">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -55,9 +55,9 @@ const OurWork = () => {
             — Portfolio —
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.7 }}
             className="text-5xl md:text-7xl font-normal text-[#1e3a5f] leading-tight"
             style={fontSerif}
@@ -67,7 +67,7 @@ const OurWork = () => {
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ delay: 0.25, duration: 0.6 }}
             className="mt-6 text-[#1e3a5f]/60 font-light max-w-2xl mx-auto"
             style={fontSans}
@@ -77,26 +77,22 @@ const OurWork = () => {
           </motion.p>
         </div>
 
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
+        <ul className="m-0 grid w-full list-none grid-cols-2 gap-2 p-0 sm:gap-3 md:gap-4 lg:grid-cols-3">
           {galleryImages.map((item, index) => (
-            <motion.figure
+            <li
               key={item.src}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ delay: Math.min(index * 0.04, 0.4), duration: 0.55 }}
-              className="break-inside-avoid mb-4 rounded-lg overflow-hidden shadow-md shadow-[#1e3a5f]/10 ring-1 ring-[#1e3a5f]/5"
+              className="relative isolate min-h-0 min-w-0 overflow-hidden rounded-lg shadow-md shadow-[#1e3a5f]/10 ring-1 ring-[#1e3a5f]/5 [aspect-ratio:3/4]"
             >
               <img
                 src={item.src}
                 alt={item.alt}
                 loading={index < 6 ? "eager" : "lazy"}
                 decoding="async"
-                className="w-full h-auto object-cover"
+                className="absolute inset-0 size-full object-cover"
               />
-            </motion.figure>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
