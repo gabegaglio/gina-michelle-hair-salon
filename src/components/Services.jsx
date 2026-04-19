@@ -7,7 +7,7 @@ const services = [
     name: "Haircuts",
     tagline: "Cuts, blowouts & finishing",
     prices: [
-      { min: 25, max: 30, label: "Men's" },
+      { min: 25, max: 30, label: "Boys–men" },
       { min: 40, max: 60, label: "Women's (long hair)" },
       { min: 45, max: 60, label: "Wash & blowout" },
     ],
@@ -28,7 +28,7 @@ const services = [
     name: "Shaves",
     tagline: "Classic. Clean. Refined.",
     prices: [
-      { min: 25, max: 30, label: "Beard shave (trim & shave)" },
+      { min: 25, max: 30, label: "Beard trim & shave" },
       { min: 30, max: 35, label: "Facial shave" },
       { min: 60, max: 70, label: "Men's hair color" },
     ],
@@ -83,7 +83,7 @@ const TiltCard = ({ service, index }) => {
         transformStyle: "preserve-3d",
         transformPerspective: 1000,
       }}
-      className={`group relative ${
+      className={`group relative h-full ${
         isFeatured ? "md:-translate-y-6 md:scale-[1.03]" : ""
       }`}
     >
@@ -131,7 +131,7 @@ const TiltCard = ({ service, index }) => {
 
         {/* Tagline */}
         <p
-          className={`relative z-10 italic text-sm md:text-base mb-8 font-light ${
+          className={`relative z-10 italic text-sm md:text-base mb-6 font-light ${
             isFeatured ? "text-white/70" : "text-[#1e3a5f]/60"
           }`}
           style={fontSerif}
@@ -139,34 +139,13 @@ const TiltCard = ({ service, index }) => {
           {service.tagline}
         </p>
 
-        {/* Animated divider */}
-        <div className="relative z-10 mb-8 h-px w-full overflow-hidden flex-grow-0">
-          <div
-            className={`absolute inset-0 ${
-              isFeatured ? "bg-white/15" : "bg-[#1e3a5f]/10"
-            }`}
-          />
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.12 + 0.4, duration: 0.8 }}
-            style={{ transformOrigin: "left" }}
-            className={`absolute inset-0 ${
-              isFeatured ? "bg-white" : "bg-[#1e3a5f]"
-            } w-1/3 group-hover:w-full transition-all duration-700`}
-          />
-        </div>
-
-        <div className="flex-grow" />
-
-        {/* Price footer */}
+        {/* Price block — sits under tagline; spacer fills below */}
         <div
-          className={`relative z-10 flex items-end justify-between pt-6 border-t ${
+          className={`relative z-10 flex items-end justify-between gap-4 pt-6 border-t ${
             isFeatured ? "border-white/15" : "border-[#1e3a5f]/10"
           }`}
         >
-          <div>
+          <div className="min-w-0 flex-1">
             <p
               className={`text-[10px] uppercase tracking-[0.2em] font-light mb-2 ${
                 isFeatured ? "text-white/60" : "text-[#1e3a5f]/50"
@@ -194,12 +173,12 @@ const TiltCard = ({ service, index }) => {
                       {range}
                     </span>
                     <span
-                      className={`text-[11px] italic font-light ${
+                      className={`text-xs md:text-sm italic font-light ${
                         isFeatured ? "text-white/60" : "text-[#1e3a5f]/55"
                       }`}
                       style={fontSerif}
                     >
-                      ({p.label})
+                      {p.label}
                     </span>
                   </div>
                 );
@@ -210,7 +189,7 @@ const TiltCard = ({ service, index }) => {
             href="#contact"
             whileHover={{ x: 4 }}
             whileTap={{ scale: 0.95 }}
-            className={`inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-light pb-1 border-b ${
+            className={`shrink-0 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-light pb-1 border-b self-end ${
               isFeatured
                 ? "text-white border-white/40 hover:border-white"
                 : "text-[#1e3a5f] border-[#1e3a5f]/30 hover:border-[#1e3a5f]"
@@ -221,6 +200,27 @@ const TiltCard = ({ service, index }) => {
             <span aria-hidden>→</span>
           </motion.a>
         </div>
+
+        {/* Animated line + flex fill below prices */}
+        <div className="relative z-10 mt-6 h-px w-full overflow-hidden flex-shrink-0">
+          <div
+            className={`absolute inset-0 ${
+              isFeatured ? "bg-white/15" : "bg-[#1e3a5f]/10"
+            }`}
+          />
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.12 + 0.4, duration: 0.8 }}
+            style={{ transformOrigin: "left" }}
+            className={`absolute inset-0 ${
+              isFeatured ? "bg-white" : "bg-[#1e3a5f]"
+            } w-1/3 group-hover:w-full transition-all duration-700`}
+          />
+        </div>
+
+        <div className="flex-grow min-h-0" aria-hidden />
       </div>
     </motion.div>
   );
