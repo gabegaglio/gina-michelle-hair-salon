@@ -1,18 +1,20 @@
-Men - Boys Hair Cut 20 ... 25
-Wash, Cut-Style ... 22 ... 28
-Head Shave ... 22 ... 28
-Facial Shave ... 25 ... 30
-Facial Massage ... 30 ... 35
-Beard Trim ... 5 ... 8
-Hair Color (Only) ... 40 ... 50
-Men Services Require Less Time
+# Mirrors src/components/Pricing.jsx — update both when prices change
 
-Women Haircut ... 35 ... 50
-Girls Dry Haircut (10 Under) ... 26 ... 35
-Wash Cut - Blowout ... 40 ... 55
-Wash Blowout ... 35 ... 40
-Curly Iron- Flat Iron ... 30 ... 45
-All Color Services ... 80 ... 120
-Full Head Highlight ... 180 ... 250
-Half Head Highlight ... 100 .. 150
-Perm + Body Waves ... 100 ... 200
+Men's Services
+  Men's haircut ...................... $25–30
+  Wash, cut & style .................. $30–35
+  Beard trim (add-on) ................ +$5
+  Beard shave (trim & shave) ........ $25–30
+  Facial shave ....................... $30–35
+  Men's hair color ................... $60–70
+
+Women's Services
+  Women's haircut (long hair) ........ $40–60
+  Girls dry haircut .................. $35
+  Wash, cut & blowout ................ $45–55
+  Wash & blowout ..................... $45–60
+  Curly / flat iron .................. $50–65
+  All color services ................. $100–120
+  Full head highlight ................ $250–350
+  Half head highlight ................ $180–220
+  Perm, body & waves ................. $120–200

@@ -5,6 +5,7 @@ import {
   FaFacebook,
   FaInstagram,
 } from "react-icons/fa";
+import { FACEBOOK_URL, INSTAGRAM_URL } from "../socialLinks";
 
 const Contact = () => {
   return (
@@ -121,7 +122,7 @@ const Contact = () => {
               </motion.a>
               <div className="flex items-center gap-4 pt-4">
                 <motion.a
-                  href="https://www.facebook.com/GinaMichele2019/"
+                  href={FACEBOOK_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
@@ -132,7 +133,7 @@ const Contact = () => {
                   <FaFacebook className="text-2xl text-[#1e3a5f]" />
                 </motion.a>
                 <motion.a
-                  href="https://www.instagram.com/ginamichelehairsalon_si/"
+                  href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}

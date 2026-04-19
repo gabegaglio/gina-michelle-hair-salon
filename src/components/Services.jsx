@@ -5,24 +5,33 @@ const services = [
   {
     index: "01",
     name: "Haircuts",
-    tagline: "Tailored cuts for every style",
+    tagline: "Cuts, blowouts & finishing",
     prices: [
-      { amount: 20, label: "Men / Boys" },
-      { amount: 35, label: "Women" },
+      { min: 25, max: 30, label: "Men's" },
+      { min: 40, max: 60, label: "Women's (long hair)" },
+      { min: 45, max: 60, label: "Wash & blowout" },
     ],
   },
   {
     index: "02",
     name: "Highlights",
     tagline: "Color that elevates",
-    prices: [{ amount: 100, label: "Half Head Highlight" }],
+    prices: [
+      { min: 100, max: 120, label: "All color services" },
+      { min: 180, max: 220, label: "Half head highlight" },
+      { min: 250, max: 350, label: "Full head highlight" },
+    ],
     featured: true,
   },
   {
     index: "03",
     name: "Shaves",
     tagline: "Classic. Clean. Refined.",
-    prices: [{ amount: 22, label: "Head Shave" }],
+    prices: [
+      { min: 25, max: 30, label: "Beard shave (trim & shave)" },
+      { min: 30, max: 35, label: "Facial shave" },
+      { min: 60, max: 70, label: "Men's hair color" },
+    ],
   },
 ];
 
@@ -167,26 +176,34 @@ const TiltCard = ({ service, index }) => {
               Starting at
             </p>
             <div className="space-y-1.5">
-              {service.prices.map((p, i) => (
-                <div key={i} className="flex items-baseline gap-2">
-                  <span
-                    className={`text-2xl md:text-3xl font-normal leading-none ${
-                      isFeatured ? "text-white" : "text-[#1e3a5f]"
-                    }`}
-                    style={fontSerif}
-                  >
-                    ${p.amount}
-                  </span>
-                  <span
-                    className={`text-[11px] italic font-light ${
-                      isFeatured ? "text-white/60" : "text-[#1e3a5f]/55"
-                    }`}
-                    style={fontSerif}
-                  >
-                    ({p.label})
-                  </span>
-                </div>
-              ))}
+              {service.prices.map((p, i) => {
+                const range =
+                  p.min != null && p.max != null
+                    ? p.min === p.max
+                      ? `$${p.min}`
+                      : `$${p.min}–$${p.max}`
+                    : `$${p.amount}`;
+                return (
+                  <div key={i} className="flex items-baseline gap-2 flex-wrap">
+                    <span
+                      className={`text-2xl md:text-3xl font-normal leading-none ${
+                        isFeatured ? "text-white" : "text-[#1e3a5f]"
+                      }`}
+                      style={fontSerif}
+                    >
+                      {range}
+                    </span>
+                    <span
+                      className={`text-[11px] italic font-light ${
+                        isFeatured ? "text-white/60" : "text-[#1e3a5f]/55"
+                      }`}
+                      style={fontSerif}
+                    >
+                      ({p.label})
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <motion.a

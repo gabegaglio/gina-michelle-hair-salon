@@ -5,27 +5,26 @@ const prices = [
   {
     category: "Men's Services",
     services: [
-      { name: "Men - Boys Hair Cut", min: 20, max: 25 },
-      { name: "Wash, Cut-Style", min: 22, max: 28 },
-      { name: "Head Shave", min: 22, max: 28 },
-      { name: "Facial Shave", min: 25, max: 30 },
-      { name: "Facial Massage", min: 30, max: 35 },
-      { name: "Beard Trim", min: 5, max: 8 },
-      { name: "Hair Color (Only)", min: 40, max: 50 },
+      { name: "Men's haircut", min: 25, max: 30 },
+      { name: "Wash, cut & style", min: 30, max: 35 },
+      { name: "Beard trim (add-on)", display: "+$5" },
+      { name: "Beard shave (trim & shave)", min: 25, max: 30 },
+      { name: "Facial shave", min: 30, max: 35 },
+      { name: "Men's hair color", min: 60, max: 70 },
     ],
   },
   {
     category: "Women's Services",
     services: [
-      { name: "Women Haircut", min: 35, max: 50 },
-      { name: "Girls Dry Haircut (10 Under)", min: 26, max: 35 },
-      { name: "Wash Cut - Blowout", min: 40, max: 55 },
-      { name: "Wash Blowout", min: 35, max: 40 },
-      { name: "Curly Iron- Flat Iron", min: 30, max: 45 },
-      { name: "All Color Services", min: 80, max: 120 },
-      { name: "Full Head Highlight", min: 180, max: 250 },
-      { name: "Half Head Highlight", min: 100, max: 150 },
-      { name: "Perm + Body Waves", min: 100, max: 200 },
+      { name: "Women's haircut (long hair)", min: 40, max: 60 },
+      { name: "Girls dry haircut", min: 35, max: 35 },
+      { name: "Wash, cut & blowout", min: 45, max: 55 },
+      { name: "Wash & blowout", min: 45, max: 60 },
+      { name: "Curly / flat iron", min: 50, max: 65 },
+      { name: "All color services", min: 100, max: 120 },
+      { name: "Full head highlight", min: 250, max: 350 },
+      { name: "Half head highlight", min: 180, max: 220 },
+      { name: "Perm, body & waves", min: 120, max: 200 },
     ],
   },
 ];
@@ -73,7 +72,7 @@ const Pricing = () => {
       </div>
 
       {/* Active Tab Content */}
-      <div className="flex-1 min-h-[360px]">
+      <div className="flex-1 min-h-[400px] md:min-h-[440px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -93,9 +92,11 @@ const Pricing = () => {
                   {service.name}
                 </span>
                 <span className="font-normal text-[#1e3a5f] whitespace-nowrap text-sm">
-                  {service.min === service.max
-                    ? `$${service.min}`
-                    : `$${service.min} - $${service.max}`}
+                  {service.display != null
+                    ? service.display
+                    : service.min === service.max
+                      ? `$${service.min}`
+                      : `$${service.min}–$${service.max}`}
                 </span>
               </div>
             ))}

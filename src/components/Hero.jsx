@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FACEBOOK_URL, INSTAGRAM_URL } from "../socialLinks";
 
 const heroImage = `${import.meta.env.BASE_URL}salon-hero.jpg`;
 
@@ -65,6 +66,36 @@ const Hero = () => {
             className="mt-6 text-sm md:text-base text-white/80 font-light tracking-widest uppercase"
           >
             Staten Island, NY
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.05, duration: 0.8 }}
+            className="mt-5 text-sm md:text-base font-light tracking-wide text-white/85"
+            style={{
+              fontFamily:
+                "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+            }}
+          >
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-white transition-colors"
+            >
+              Facebook
+            </a>
+            <span className="mx-3 text-white/40" aria-hidden>
+              ·
+            </span>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-white transition-colors"
+            >
+              Instagram
+            </a>
           </motion.p>
         </motion.div>
       </div>
