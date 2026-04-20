@@ -1,9 +1,6 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
-
 const prices = [
   {
-    category: "Men's Services",
+    category: "Men's services",
     services: [
       { name: "Men's haircut", min: 25, max: 30 },
       { name: "Wash, cut & style", min: 30, max: 35 },
@@ -14,16 +11,16 @@ const prices = [
     ],
   },
   {
-    category: "Women's Services",
+    category: "Women's services",
     services: [
-      { name: "Women's haircut (long hair)", min: 40, max: 60 },
-      { name: "Girls dry haircut", min: 35, max: 35 },
+      { name: "Girls dry haircut", min: 35, max: 45 },
+      { name: "Women's haircut — shorter to longer hair", min: 40, max: 60 },
       { name: "Wash, cut & blowout", min: 45, max: 55 },
       { name: "Wash & blowout", min: 45, max: 60 },
       { name: "Curly / flat iron", min: 50, max: 65 },
       { name: "All color services", min: 100, max: 120 },
-      { name: "Full head highlight", min: 250, max: 350 },
       { name: "Half head highlight", min: 180, max: 220 },
+      { name: "Full head highlight", min: 250, max: 350 },
       { name: "Perm, body & waves", min: 120, max: 200 },
     ],
   },
@@ -34,83 +31,76 @@ const fontStyle = {
     "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
 };
 
+function formatPrice(service) {
+  if (service.display != null) return service.display;
+  if (service.min === service.max) return `$${service.min}`;
+  return `$${service.min}–$${service.max}`;
+}
+
 const Pricing = () => {
-  const [activeTab, setActiveTab] = useState(0);
-  const active = prices[activeTab];
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: 0.4, duration: 0.6 }}
-      className="bg-white border border-[#1e3a5f]/10 rounded-2xl shadow-md p-8 md:p-10 flex flex-col"
-    >
-      <h3
-        className="text-2xl font-normal mb-6 text-[#1e3a5f] text-center"
-        style={fontStyle}
-      >
-        Pricing
-      </h3>
-
-      {/* Tabs */}
-      <div className="flex gap-2 mb-6 bg-[#1e3a5f]/5 rounded-full p-1">
-        {prices.map((category, idx) => (
-          <button
-            key={category.category}
-            onClick={() => setActiveTab(idx)}
-            className={`flex-1 py-2 px-4 rounded-full text-sm font-light transition-all duration-300 ${
-              activeTab === idx
-                ? "bg-[#1e3a5f] text-white shadow-sm"
-                : "text-[#1e3a5f] hover:bg-[#1e3a5f]/10"
-            }`}
+    <div className="flex flex-col gap-10 w-full">
+      {prices.map((block) => (
+        <div key={block.category}>
+          <h3
+            className="text-lg font-normal text-[#1e3a5f] mb-3"
             style={fontStyle}
           >
-            {category.category}
-          </button>
-        ))}
-      </div>
-
-      {/* Active Tab Content */}
-      <div className="flex-1 min-h-[400px] md:min-h-[440px]">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -10 }}
-            transition={{ duration: 0.25 }}
-            className="space-y-1.5"
-          >
-            {active.services.map((service, index) => (
-              <div
-                key={index}
-                className="flex justify-between items-center py-2 px-4 rounded-lg text-[#1e3a5f] hover:bg-[#1e3a5f]/5 transition-colors duration-300"
-                style={fontStyle}
-              >
-                <span className="font-light text-sm flex-1 pr-4">
-                  {service.name}
-                </span>
-                <span className="font-normal text-[#1e3a5f] whitespace-nowrap text-sm">
-                  {service.display != null
-                    ? service.display
-                    : service.min === service.max
-                      ? `$${service.min}`
-                      : `$${service.min}–$${service.max}`}
-                </span>
-              </div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+            {block.category}
+          </h3>
+          <div className="overflow-x-auto border border-[#1e3a5f]/15">
+            <table className="w-full min-w-[280px] text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-[#1e3a5f]/15 text-[#1e3a5f]/75">
+                    <th
+                      scope="col"
+                      className="py-3 px-4 text-xs font-medium uppercase tracking-wider"
+                      style={fontStyle}
+                    >
+                      Service
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-3 px-4 text-xs font-medium uppercase tracking-wider text-right w-[7.5rem]"
+                      style={fontStyle}
+                    >
+                      Price
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {block.services.map((service, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-[#1e3a5f]/[0.08] last:border-0 text-[#1e3a5f] hover:bg-[#1e3a5f]/[0.04] transition-colors"
+                    >
+                      <td
+                        className="py-2.5 px-4 font-light text-sm align-top"
+                        style={fontStyle}
+                      >
+                        {service.name}
+                      </td>
+                      <td
+                        className="py-2.5 px-4 text-sm font-normal text-right whitespace-nowrap align-top"
+                        style={fontStyle}
+                      >
+                        {formatPrice(service)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+          </div>
+        </div>
+      ))}
 
       <p
-        className="text-xs text-[#1e3a5f]/60 mt-4 text-center italic font-light"
+        className="text-xs text-[#1e3a5f]/60 text-center italic font-light"
         style={fontStyle}
       >
-        *Men Services Require Less Time
+        *Men’s services require less time
       </p>
-    </motion.div>
+    </div>
   );
 };
 

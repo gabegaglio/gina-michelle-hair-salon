@@ -7,7 +7,26 @@ import {
 } from "react-icons/fa";
 import { FACEBOOK_URL, INSTAGRAM_URL } from "../socialLinks";
 
+const hours = [
+  { day: "Monday", hours: "Closed" },
+  { day: "Tuesday", hours: "9 AM–5 PM" },
+  { day: "Wednesday", hours: "9 AM–5 PM" },
+  { day: "Thursday", hours: "9 AM–5 PM" },
+  { day: "Friday", hours: "9 AM–5 PM" },
+  { day: "Saturday", hours: "9 AM–4 PM" },
+  { day: "Sunday", hours: "Closed" },
+];
+
+const fontSans = {
+  fontFamily:
+    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+};
+
 const Contact = () => {
+  const currentDay = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+  });
+
   return (
     <section id="contact" className="py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-6 max-w-7xl">
@@ -17,10 +36,7 @@ const Contact = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-normal text-center mb-4 text-[#1e3a5f]"
-          style={{
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-          }}
+          style={fontSans}
         >
           Contact Us
         </motion.h2>
@@ -29,32 +45,84 @@ const Contact = () => {
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mx-auto w-24 h-0.5 bg-[#1e3a5f] mb-16"
-        ></motion.div>
+          className="mx-auto w-24 h-0.5 bg-[#1e3a5f] mb-10"
+        />
+
+        {/* Hours first — flat strip, no card; #hours for nav */}
+        <motion.div
+          id="hours"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5 }}
+          className="max-w-5xl mx-auto mb-14 md:mb-16 scroll-mt-24 border-y border-[#1e3a5f]/20 py-8"
+        >
+          <p
+            className="text-xs uppercase tracking-[0.35em] text-[#1e3a5f]/55 text-center mb-6 font-light"
+            style={fontSans}
+          >
+            Business hours
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-5 sm:gap-x-10 md:gap-x-12">
+            {hours.map((item) => {
+              const isToday = item.day === currentDay;
+              return (
+                <div
+                  key={item.day}
+                  className={`min-w-[4.75rem] text-center rounded-md px-2.5 py-2 transition-colors ${
+                    isToday
+                      ? "bg-[#1e3a5f] text-white shadow-sm"
+                      : "text-[#1e3a5f]/75"
+                  }`}
+                  style={fontSans}
+                >
+                  <div
+                    className={`text-[10px] uppercase tracking-wider mb-1 ${
+                      isToday
+                        ? "text-white/85 font-medium"
+                        : "text-[#1e3a5f]/45"
+                    }`}
+                  >
+                    {item.day.slice(0, 3)}
+                  </div>
+                  <div
+                    className={`text-sm leading-snug ${
+                      isToday ? "font-medium text-white" : "font-light"
+                    }`}
+                  >
+                    {item.hours}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <p
+            className="text-xs text-[#1e3a5f]/50 mt-6 text-center italic font-light"
+            style={fontSans}
+          >
+            *Hours may vary on holidays
+          </p>
+        </motion.div>
+
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <motion.div
+            id="contact-details"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
-            className="space-y-8"
+            className="space-y-8 scroll-mt-28"
           >
             <div>
               <h3
                 className="text-2xl font-normal mb-4 text-[#1e3a5f]"
-                style={{
-                  fontFamily:
-                    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-                }}
+                style={fontSans}
               >
                 Get in Touch
               </h3>
               <p
                 className="text-[#1e3a5f]/70 leading-relaxed font-light"
-                style={{
-                  fontFamily:
-                    "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-                }}
+                style={fontSans}
               >
                 Visit us at our location or give us a call to book your
                 appointment.
@@ -71,19 +139,13 @@ const Contact = () => {
                 <div>
                   <p
                     className="font-normal text-[#1e3a5f] mb-1"
-                    style={{
-                      fontFamily:
-                        "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-                    }}
+                    style={fontSans}
                   >
                     Address
                   </p>
                   <p
                     className="text-[#1e3a5f]/70 leading-relaxed font-light"
-                    style={{
-                      fontFamily:
-                        "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-                    }}
+                    style={fontSans}
                   >
                     1358 Clove Rd
                     <br />
@@ -102,19 +164,13 @@ const Contact = () => {
                 <div>
                   <p
                     className="font-normal text-[#1e3a5f] mb-1"
-                    style={{
-                      fontFamily:
-                        "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-                    }}
+                    style={fontSans}
                   >
                     Phone
                   </p>
                   <p
                     className="text-[#1e3a5f]/70 font-light"
-                    style={{
-                      fontFamily:
-                        "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-                    }}
+                    style={fontSans}
                   >
                     (917) 444-1914
                   </p>
@@ -162,7 +218,7 @@ const Contact = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Location Map"
-            ></iframe>
+            />
           </motion.div>
         </div>
       </div>

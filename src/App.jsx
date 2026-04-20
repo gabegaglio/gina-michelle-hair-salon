@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Logo from "./components/Logo";
 import Services from "./components/Services";
 import OurWork from "./components/OurWork";
 import MeetTheTeam from "./components/MeetTheTeam";
@@ -20,6 +21,12 @@ function App() {
       <Contact />
       <footer className="bg-[#1e3a5f] py-12 text-center">
         <div className="container mx-auto px-6 max-w-7xl">
+          <div className="mb-4 md:mb-5 flex justify-center">
+            <Logo
+              className="h-[clamp(2.25rem,8vw,4rem)] w-auto max-w-[min(55vw,12rem)] opacity-95"
+              onDark
+            />
+          </div>
           <p
             className="text-3xl font-normal text-white mb-3"
             style={{ fontFamily: "'Great Vibes', cursive" }}

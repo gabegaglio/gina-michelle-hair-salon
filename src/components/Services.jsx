@@ -5,18 +5,19 @@ const services = [
   {
     index: "01",
     name: "Haircuts",
-    tagline: "Cuts, blowouts & finishing",
+    tagline: "Precision cuts & blowouts for every age",
     prices: [
       { min: 25, max: 30, label: "Boys–men" },
-      { min: 40, max: 60, label: "Women's (long hair)" },
+      { min: 40, max: 60, label: "Women's haircut — shorter to longer hair" },
       { min: 45, max: 60, label: "Wash & blowout" },
     ],
   },
   {
     index: "02",
-    name: "Highlights",
-    tagline: "Color that elevates",
+    name: "Color",
+    tagline: "Single process, highlights & men's color",
     prices: [
+      { min: 60, max: 70, label: "Men's hair color" },
       { min: 100, max: 120, label: "All color services" },
       { min: 180, max: 220, label: "Half head highlight" },
       { min: 250, max: 350, label: "Full head highlight" },
@@ -25,12 +26,13 @@ const services = [
   },
   {
     index: "03",
-    name: "Shaves",
-    tagline: "Classic. Clean. Refined.",
+    name: "Perms & grooming",
+    tagline: "Texture, thermal styling & classic barbering",
     prices: [
       { min: 25, max: 30, label: "Beard trim & shave" },
       { min: 30, max: 35, label: "Facial shave" },
-      { min: 60, max: 70, label: "Men's hair color" },
+      { min: 50, max: 65, label: "Curly / flat iron" },
+      { min: 120, max: 200, label: "Perm, body & waves" },
     ],
   },
 ];
@@ -154,7 +156,7 @@ const TiltCard = ({ service, index }) => {
             >
               Starting at
             </p>
-            <div className="space-y-1.5">
+            <div className="space-y-3">
               {service.prices.map((p, i) => {
                 const range =
                   p.min != null && p.max != null
@@ -163,7 +165,7 @@ const TiltCard = ({ service, index }) => {
                       : `$${p.min}–$${p.max}`
                     : `$${p.amount}`;
                 return (
-                  <div key={i} className="flex items-baseline gap-2 flex-wrap">
+                  <div key={i} className="flex flex-col gap-0.5">
                     <span
                       className={`text-2xl md:text-3xl font-normal leading-none ${
                         isFeatured ? "text-white" : "text-[#1e3a5f]"
@@ -173,7 +175,7 @@ const TiltCard = ({ service, index }) => {
                       {range}
                     </span>
                     <span
-                      className={`text-xs md:text-sm italic font-light ${
+                      className={`text-xs md:text-sm italic font-light leading-snug ${
                         isFeatured ? "text-white/60" : "text-[#1e3a5f]/55"
                       }`}
                       style={fontSerif}
@@ -186,7 +188,7 @@ const TiltCard = ({ service, index }) => {
             </div>
           </div>
           <motion.a
-            href="#contact"
+            href="#contact-details"
             whileHover={{ x: 4 }}
             whileTap={{ scale: 0.95 }}
             className={`shrink-0 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-light pb-1 border-b self-end ${
@@ -277,8 +279,8 @@ const Services = () => {
             className="mt-6 text-[#1e3a5f]/60 font-light max-w-xl mx-auto"
             style={fontSans}
           >
-            Three decades of craft, distilled into a focused menu of signature
-            services.
+            Cuts, color, and texture—three menus that mirror our full pricing,
+            from everyday cuts to color and perms.
           </motion.p>
         </div>
 

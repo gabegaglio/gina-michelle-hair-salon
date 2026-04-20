@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,9 +22,10 @@ const Navbar = () => {
     { name: "Services", href: "#services" },
     { name: "Our Work", href: "#our-work" },
     { name: "Team", href: "#team" },
-    { name: "Hours", href: "#hours" },
+    { name: "Pricing", href: "#pricing" },
     { name: "Reviews", href: "#reviews" },
-    { name: "Contact", href: "#contact" },
+    { name: "Hours", href: "#hours" },
+    { name: "Contact", href: "#contact-details" },
   ];
 
   return (
@@ -44,12 +46,17 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16 md:h-20">
           <motion.a
             href="#home"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="text-2xl md:text-3xl font-normal text-[#1e3a5f] cursor-pointer"
-            style={{ fontFamily: "'Great Vibes', cursive" }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center gap-2 sm:gap-2.5 md:gap-3 text-[#1e3a5f] cursor-pointer min-w-0"
           >
-            Gina Michele
+            <Logo className="h-[clamp(1.5rem,4.5vw,2.75rem)] w-auto max-h-11 shrink-0" />
+            <span
+              className="text-[clamp(1.125rem,3.8vw,1.875rem)] md:text-3xl font-normal leading-none truncate"
+              style={{ fontFamily: "'Great Vibes', cursive" }}
+            >
+              Gina Michele
+            </span>
           </motion.a>
 
           {/* Desktop Menu */}
